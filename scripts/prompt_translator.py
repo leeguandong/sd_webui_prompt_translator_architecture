@@ -395,7 +395,7 @@ class Script(scripts.Script):
                             self.language = gr.Dropdown(
                                 label="Source language",
                                 choices=[x.label for x in self.current_axis_options],
-                                value="Français",
+                                value="Chinese",
                                 type="index",
                                 elem_id=self.elem_id("x_type")
                             )
@@ -479,7 +479,7 @@ class Script(scripts.Script):
 
                     ln_code = language_options[language].language_code
                     translated_prompt = self.process_text(original_prompt, ln_code)
-                    translated_prompt = self.translator.translate(original_prompt, ln_code, "en_XX")
+                    #translated_prompt = self.translator.translate(original_prompt, ln_code, "en_XX")
 
                     translated_prompt = post_process_prompt(original_prompt, translated_prompt)
                     print(f"Translated prompt:{translated_prompt}")
@@ -499,7 +499,8 @@ class Script(scripts.Script):
                         print(f"Translating negative prompt to English from {language_options[language].label}")
                         print(f"Initial negative prompt:{negative_prompt}")
                         ln_code = language_options[language].language_code
-                        translated_negative_prompt = self.translator.translate(negative_prompt, ln_code, "en_XX")
+                        #translated_negative_prompt = self.translator.translate(negative_prompt, ln_code, "en_XX")
+                        translated_negative_prompt = self.process_text(negative_prompt, ln_code)
                         translated_negative_prompt = post_process_prompt(negative_prompt, translated_negative_prompt)
                         print(f"Translated negative prompt:{translated_negative_prompt}")
                         translated_negative_prompts.append(translated_negative_prompt)
